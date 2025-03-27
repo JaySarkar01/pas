@@ -14,15 +14,18 @@ const Navbar = () => {
           <img 
             src="/logo/PAS-logo.svg" 
             alt="Parvati & Sons" 
-            className="h-6 sm:h-7 md:h-8 lg:h-12 w-auto" 
+            className="h-6 sm:h-7 md:h-8 lg:h-12" 
           />
         </div>
 
         {/* Centered Navigation Links (Hidden in Mobile) */}
-        <ul className="hidden md:flex space-x-4 lg:space-x-8 xl:space-x-14 text-gray-900 font-medium font-sans text-base lg:text-lg xl:text-2xl">
+        <ul className="hidden lg:flex space-x-4 xl:space-x-14 text-gray-900 font-medium font-sans text-lg xl:text-2xl">
           {["Home", "Services", "Results", "About", "Insights"].map((item) => (
             <li key={item}>
-              <a href="#" className="hover:text-blue-600 transition-colors duration-200">
+              <a href="#" className="relative text-gray-900 font-medium text-lg xl:text-2xl
+     transition-colors duration-100
+    before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:w-0 before:h-0.5 before:bg-black before:transition-all before:duration-300 before:ease-in-out before:-translate-x-1/2
+    hover:before:w-full">
                 {item}
               </a>
             </li>
@@ -30,14 +33,14 @@ const Navbar = () => {
         </ul>
 
         {/* Right Contact Button (Hidden in Mobile) */}
-        <button className="hidden md:flex items-center border-2 border-gray-700 px-4 lg:px-14 py-1 lg:py-2 rounded-lg lg:rounded-xl text-base lg:text-lg xl:text-2xl font-sans font-semibold text-black hover:bg-gray-100 transition-colors duration-200">
+        <button className="hidden lg:flex items-center border-2 border-gray-700 px-6 lg:px-14 py-2 xl:py-2 rounded-lg xl:rounded-xl text-lg xl:text-2xl font-sans font-semibold text-black hover:bg-gray-100 transition-colors duration-200">
           Contact
         </button>
 
         {/* Hamburger Menu for Mobile (Opens Right Sidebar) */}
         <button 
           onClick={() => setIsOpen(true)} 
-          className="md:hidden focus:outline-none"
+          className="lg:hidden focus:outline-none"
           aria-label="Open menu"
         >
           <Menu size={24} className="text-gray-700" />
@@ -55,7 +58,7 @@ const Navbar = () => {
           <img 
             src="/logo/PAS-logo.svg" 
             alt="Parvati & Sons" 
-            className="h-6 w-auto" 
+            className="h-6" 
           />
           <button 
             onClick={() => setIsOpen(false)}

@@ -33,14 +33,14 @@ const WhatsAppInput = () => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center border-2 border-gray-700 rounded-xl p-2 w-full max-w-3xl">
+    <div className="flex flex-col sm:flex-row items-center border-2 border-gray-700 rounded-xl p-2 w-full max-w-2xl">
       {/* Input Field */}
       <input
         type="text"
         placeholder="Type your message here..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className={`flex-1 w-full text-lg outline-none border-none px-4 py-2 rounded-lg sm:rounded-none sm:rounded-l-lg ${
+        className={`flex-1 w-full text-lg outline-none border-none px-4 py-2 sm:rounded-lg ${
           error ? "border-2 border-red-500 text-red-500" : "text-gray-700 placeholder-gray-400"
         }`}
       />
@@ -53,7 +53,7 @@ const WhatsAppInput = () => {
         ${shake ? "animate-shake" : ""} ${isProcessing ? "opacity-50 cursor-default" : ""}`}
       >
         <FaWhatsapp className="text-2xl mr-2" />
-        WhatsApp
+        WhatsApp us
       </button>
 
       {/* Add Tailwind CSS Animation for shake */}
