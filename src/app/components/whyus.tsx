@@ -1,6 +1,6 @@
 'use client';
 import { useAnimation, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import TestimonialSlider from '@/app/components/swapin';
 
@@ -101,7 +101,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
   </motion.div>
 );
 
-const AutoScrollingPartners = ({ partners : any }: { partners: typeof partners }) => {
+const AutoScrollingPartners = ( { partners } : any) => {
   const controls = useAnimation();
 
   useEffect(() => {
