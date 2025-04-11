@@ -1,12 +1,13 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import WhatsAppInput from "@/app/components/whatsendbox"
+import HighlightedText from "@/app/components/underlinetxt";
 
   const inter = Inter({
-    subsets: ['latin'], // Supports Latin characters
-    weight: ['400', '700'], // Load specific font weights
-    variable: '--font-inter', // Optional CSS variable
-    display: 'swap', // Optimized loading
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-inter',
+    display: 'swap',
   });
 
 
@@ -15,8 +16,8 @@ const Landingsec = () => {
     <div className="flex flex-col md:flex-row justify-around items-center px-6 md:px-16 py-12 gap-3">
       {/* Left Section */}
       <div className="text-center space-y-8 md:text-left max-w-3xl">
-      <h1 className={`${inter.className} text-3xl md:text-5xl xl:text-6xl font-bold leading-tight text-gray-900`}>
-          Build <span className={`${inter.className} md:text-blue-500 sm:text-black`}>Websites and Apps</span> Without Boundaries
+      <h1 className={`${inter.className} text-3xl md:text-5xl xl:text-6xl text-gray-500 font-bold leading-tight`}>
+          Build <HighlightedText text="Websites and Apps" underlineColor="amber-500"/> Without Boundaries
         </h1>
         <p className={`text-lg md:text-xl lg:text-2xl text-gray-900 ${inter.className} font-medium mt-4`}>
           Attain your Digital Vision and Rise above the Digital Noise to Show Up and Stand Out
@@ -34,7 +35,7 @@ const Landingsec = () => {
       {/* Right Section - Image Placeholder */}
       <div className="mt-6 w-71 md:w-160 h-71 md:h-105 bg-gray-200 rounded-lg justify-center items-center overflow-hidden hidden xl:block">
         <img
-          src="https://ik.imagekit.io/dglrnyhqc/tr:w-1200,f-webp/media/index-banner.png" // Change this to your actual image
+          src="https://ik.imagekit.io/dglrnyhqc/tr:w-1200,f-webp/media/index-banner.png"
           alt="Preview"
           className="w-full h-full object-cover rounded-lg"
         />

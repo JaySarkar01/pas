@@ -13,20 +13,19 @@ const WhatsAppInput = () => {
         setError(true);
         setMessage("Enter a message!");
         setShake(true);
-        setIsProcessing(true); // Prevents repeated clicks
+        setIsProcessing(true); 
 
         setTimeout(() => {
           setError(false);
           setMessage("");
           setShake(false);
-          setIsProcessing(false); // Allow clicking again
+          setIsProcessing(false); 
         }, 1000);
       }
       return;
     }
 
-    // Open WhatsApp only if a valid message is entered
-    const phoneNumber = "+918077657958"; // Replace with your WhatsApp number
+    const phoneNumber = "+919368043648"; // Replace with WhatsApp number
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -56,7 +55,6 @@ const WhatsAppInput = () => {
         WhatsApp us
       </button>
 
-      {/* Add Tailwind CSS Animation for shake */}
       <style>
         {`
           @keyframes shake {

@@ -74,8 +74,8 @@ export default function TestimonialCarousel() {
         </div>
       </div>
 
-      {/* Navigation buttons */}
-      <div className="flex justify-center mt-8 gap-4">
+
+      <div className="flex justify-end mt-8 gap-4">
         <button 
           onClick={prevSlide}
           className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
