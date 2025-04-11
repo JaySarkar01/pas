@@ -101,7 +101,18 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
   </motion.div>
 );
 
-const AutoScrollingPartners = ( { partners } : any) => {
+
+type Partner = {
+  name: string;
+  logo: string;
+};
+
+type Props = {
+  partners: Partner[];
+};
+
+
+const AutoScrollingPartners = ( { partners }: Props) => {
   const controls = useAnimation();
 
   useEffect(() => {
