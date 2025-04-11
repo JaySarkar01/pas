@@ -201,7 +201,7 @@ export default function ImpactSection() {
             Start Free Trial
           </motion.button>
           <motion.button className="px-8 py-4 bg-white text-gray-800 font-medium rounded-xl hover:bg-gray-50 transition-colors border border-gray-200 shadow-sm" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            Schedule Demo
+            Contact us
           </motion.button>
         </motion.div>
       </div>
