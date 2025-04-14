@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -5,52 +6,37 @@ const cardData = [
   {
     id: 1,
     title: "Web Development",
-    frontBg: "bg-white",
-    backBg: "bg-orange-50",
     description: "Frontend and backend development services",
     backText: "We specialize in React, Next.js, and Node.js to build fast, scalable web applications tailored to your business needs.",
-    icon: "💻",
-    accentColor: "bg-orange-400"
+    img: "/images/web.jpg", // update with real image paths
   },
   {
     id: 2,
     title: "Mobile Apps",
-    frontBg: "bg-white",
-    backBg: "bg-orange-50",
     description: "Cross-platform mobile solutions",
     backText: "Using React Native and Flutter, we create beautiful native experiences for both iOS and Android platforms.",
-    icon: "📱",
-    accentColor: "bg-orange-400"
+    img: "/images/mobile.jpg",
   },
   {
     id: 3,
     title: "UI/UX Design",
-    frontBg: "bg-white",
-    backBg: "bg-orange-50",
     description: "Beautiful and intuitive interfaces",
     backText: "Our design process focuses on user-centered solutions with Figma and Adobe XD for seamless prototyping.",
-    icon: "🎨",
-    accentColor: "bg-orange-400"
+    img: "/images/design.jpg",
   },
   {
     id: 4,
     title: "Cloud Solutions",
-    frontBg: "bg-white",
-    backBg: "bg-orange-50",
     description: "Scalable cloud infrastructure",
     backText: "We help migrate and optimize your applications on AWS, Azure, and Google Cloud for maximum performance.",
-    icon: "☁️",
-    accentColor: "bg-orange-400"
+    img: "/images/cloud.jpg",
   },
   {
     id: 5,
     title: "Data Science",
-    frontBg: "bg-white",
-    backBg: "bg-orange-50",
     description: "Advanced analytics solutions",
     backText: "From machine learning models to data visualization dashboards, we turn your data into actionable insights.",
-    icon: "📊",
-    accentColor: "bg-orange-400"
+    img: "/images/data.jpg",
   },
 ];
 
@@ -77,68 +63,58 @@ const OrangeCardBanner = () => {
     <div className="relative w-full overflow-hidden py-16 bg-gray-50">
       <div className="flex">
         <motion.div
-          className="flex whitespace-nowrap"
+          className="flex whitespace-nowrap group-hover:pause"
           animate={{ x: ['0%', '-50%'] }}
           transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
         >
           {duplicatedCards.map((card, index) => (
             <div
               key={`${card.id}-${index}`}
-              className={`inline-flex mx-4 ${isMobile ? 'w-64 h-80' : 'w-72 h-96'} perspective-1000`}
+              className={`inline-flex mx-4 ${isMobile ? 'w-64 h-80' : 'w-72 h-96'}`}
+              style={{ perspective: 1000 }}
             >
               {isMobile ? (
-                <div className={`relative w-full h-full rounded-xl shadow-md ${card.frontBg} border border-gray-200`}>
-                  <div className="h-full flex flex-col p-6">
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                      <span className="text-5xl mb-6">{card.icon}</span>
-                      <h3 className="text-2xl font-bold text-gray-800 text-center mb-2">{card.title}</h3>
-                      <p className="text-gray-600 text-center">{card.description}</p>
-                    </div>
-                    <div className={`h-1 ${card.accentColor} my-4`}></div>
-                    <p className="text-gray-700 text-sm">{card.backText}</p>
+                <div
+                  className="relative w-full h-full rounded-xl shadow-md border border-gray-200 bg-cover bg-center flex flex-col justify-between p-6"
+                  style={{ backgroundImage: `url(${card.img})` }}
+                >
+                  <div className="bg-white/80 p-3 rounded">
+                    <h3 className="text-2xl font-bold text-gray-800 text-center mb-2">{card.title}</h3>
+                    <p className="text-gray-600 text-center">{card.description}</p>
                   </div>
+                  <p className="text-sm text-gray-800 bg-white/80 p-2 rounded mt-3">{card.backText}</p>
                 </div>
               ) : (
-                <div
-                  className="relative w-full h-full"
+                <motion.div
+                  className="relative w-full h-full transition-transform duration-500"
+                  animate={{ rotateY: flippedCard === index ? 180 : 0 }}
+                  style={{ transformStyle: 'preserve-3d' }}
                   onMouseEnter={() => setFlippedCard(index)}
                   onMouseLeave={() => setFlippedCard(null)}
                 >
-                  {/* Front of Card */}
-                  <motion.div
-                    className={`absolute w-full h-full rounded-xl shadow-md ${card.frontBg} border border-gray-200 overflow-hidden backface-hidden`}
-                    animate={{ rotateY: flippedCard === index ? 180 : 0 }}
-                    transition={{ duration: 0.6 }}
-                    style={{ transformStyle: 'preserve-3d' }}
-                  >
-                    <div className="h-full flex flex-col p-8">
-                      <div className="flex-1 flex flex-col items-center justify-center">
-                        <span className="text-6xl mb-8">{card.icon}</span>
-                        <h3 className="text-3xl font-bold text-gray-800 text-center mb-3">{card.title}</h3>
-                        <p className="text-gray-600 text-lg text-center">{card.description}</p>
-                      </div>
-                      <div className={`h-1.5 ${card.accentColor} mt-6`}></div>
+                  {/* Front Side */}
+                  <div className="absolute w-full h-full backface-hidden rounded-xl shadow-md border border-gray-200 bg-white p-6">
+                    <div className="h-full flex flex-col items-center justify-center">
+                      <h3 className="text-2xl font-bold text-gray-800 text-center mb-3">{card.title}</h3>
+                      <p className="text-gray-600 text-lg text-center">{card.description}</p>
                     </div>
-                  </motion.div>
+                  </div>
 
-                  {/* Back of Card */}
-                  <motion.div
-                    className={`absolute w-full h-full rounded-xl shadow-md ${card.backBg} border border-gray-200 rotate-y-180 overflow-hidden backface-hidden`}
-                    animate={{ rotateY: flippedCard === index ? 0 : -180 }}
-                    transition={{ duration: 0.6 }}
-                    style={{ transformStyle: 'preserve-3d' }}
-                  >
-                    <div className="h-full flex items-center justify-center p-8">
+                  {/* Back Side */}
+                  <div className="absolute w-full h-full rotate-y-180 backface-hidden rounded-xl shadow-md border border-gray-200 bg-white p-6">
+                    <div className="h-full flex flex-col items-center justify-center">
                       <p className="text-gray-700 text-center text-lg">{card.backText}</p>
+                    
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               )}
             </div>
           ))}
         </motion.div>
       </div>
 
+      {/* Gradient edges */}
       <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
       <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
     </div>
