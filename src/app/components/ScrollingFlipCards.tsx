@@ -1,48 +1,55 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 
 const cardData = [
   {
     id: 1,
     title: "Web Development",
     description: "Frontend and backend development services",
-    backText: "We specialize in React, Next.js, and Node.js to build fast, scalable web applications tailored to your business needs.",
-    img: "/images/web.jpg", // update with real image paths
+    backText:
+      "We specialize in React, Next.js, and Node.js to build fast, scalable web applications tailored to your business needs. Our expertise ensures seamless integration, optimized performance, and scalable architecture.",
+    img: "/clients/tataji.webp",
   },
   {
     id: 2,
     title: "Mobile Apps",
     description: "Cross-platform mobile solutions",
-    backText: "Using React Native and Flutter, we create beautiful native experiences for both iOS and Android platforms.",
-    img: "/images/mobile.jpg",
+    backText:
+      "Using React Native and Flutter, we create beautiful native experiences for both iOS and Android. Our apps are fast, responsive, and user-friendly across devices.",
+    img: "/clients/tataji.webp",
   },
   {
     id: 3,
     title: "UI/UX Design",
     description: "Beautiful and intuitive interfaces",
-    backText: "Our design process focuses on user-centered solutions with Figma and Adobe XD for seamless prototyping.",
-    img: "/images/design.jpg",
+    backText:
+      "Our design process focuses on user-centered solutions. We use Figma and Adobe XD for high-fidelity prototypes that prioritize usability and aesthetics.",
+    img: "/clients/tataji.webp",
   },
   {
     id: 4,
     title: "Cloud Solutions",
     description: "Scalable cloud infrastructure",
-    backText: "We help migrate and optimize your applications on AWS, Azure, and Google Cloud for maximum performance.",
-    img: "/images/cloud.jpg",
+    backText:
+      "We help migrate and optimize your applications on AWS, Azure, and Google Cloud for high availability and performance. Our cloud-native approach ensures security and efficiency.",
+    img: "/clients/tataji.webp",
   },
   {
     id: 5,
     title: "Data Science",
     description: "Advanced analytics solutions",
-    backText: "From machine learning models to data visualization dashboards, we turn your data into actionable insights.",
-    img: "/images/data.jpg",
+    backText:
+      "From machine learning models to data visualization dashboards, we transform raw data into actionable insights. Our tools empower smarter decisions and innovation.",
+    img: "/clients/tataji.webp",
   },
 ];
 
 const OrangeCardBanner = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
+  const controls = useAnimation();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const duplicatedCards = [...cardData, ...cardData];
 
@@ -50,74 +57,133 @@ const OrangeCardBanner = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     handleResize();
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    controls.start({
+      x: ['0%', '-50%'],
+      transition: {
+        ease: 'linear',
+        duration: 40,
+        repeat: Infinity,
+        repeatType: 'loop',
+      },
+    });
+  }, [controls]);
+
+  const handleMouseEnter = () => controls.stop();
+  const handleMouseLeave = () =>
+    controls.start({
+      x: ['0%', '-50%'],
+      transition: {
+        ease: 'linear',
+        duration: 40,
+        repeat: Infinity,
+        repeatType: 'loop',
+      },
+    });
+
+  const getCardPosition = (index: number) => {
+    const positions = ['translateY(0)', 'translateY(40px)', 'translateY(-40px)'];
+    return positions[index % positions.length];
+  };
+
   return (
-    <div className="relative w-full overflow-hidden py-16 bg-gray-50">
-      <div className="flex">
+    <div className=' flex flex-col justify-between'>
+    <div className="flex flex-row justify-around items-center mb-10">
+        <h1 className='text-4xl font-medium text-gray-900'>Parvati and Sons Grows with <span className='text-blue-600 text-4xl'>you!</span></h1>
+        <h3 className='text-2xl font-semibold'>15,000+ Businesses</h3>
+      </div>
+      <div
+      className="relative w-full py-24 overflow-hidden bg-white"
+      ref={containerRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      
+      <div className="flex sm:h-[300px] lg:h-[400px] items-center">
         <motion.div
-          className="flex whitespace-nowrap group-hover:pause"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
+          className="flex whitespace-nowrap items-end"
+          animate={controls}
+          style={{ height: '100%' }}
         >
           {duplicatedCards.map((card, index) => (
-            <div
+            <motion.div
               key={`${card.id}-${index}`}
-              className={`inline-flex mx-4 ${isMobile ? 'w-64 h-80' : 'w-72 h-96'}`}
-              style={{ perspective: 1000 }}
+              className={`inline-flex mx-6 ${isMobile ? 'w-72 h-72' : 'w-100 h-100'}`}
+              style={{
+                perspective: 1000,
+                transform: getCardPosition(index),
+              }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               {isMobile ? (
                 <div
-                  className="relative w-full h-full rounded-xl shadow-md border border-gray-200 bg-cover bg-center flex flex-col justify-between p-6"
-                  style={{ backgroundImage: `url(${card.img})` }}
+                  className="relative w-full h-full rounded-2xl shadow-xl border border-gray-200 bg-cover bg-center flex flex-col justify-end p-6"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${card.img})`,
+                  }}
                 >
-                  <div className="bg-white/80 p-3 rounded">
-                    <h3 className="text-2xl font-bold text-gray-800 text-center mb-2">{card.title}</h3>
-                    <p className="text-gray-600 text-center">{card.description}</p>
+                  <div className="text-white">
+                    <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+                    <p className="text-sm opacity-90">{card.description}</p>
                   </div>
-                  <p className="text-sm text-gray-800 bg-white/80 p-2 rounded mt-3">{card.backText}</p>
                 </div>
               ) : (
                 <motion.div
-                  className="relative w-full h-full transition-transform duration-500"
+                  className="relative w-full h-full transition-transform duration-300"
                   animate={{ rotateY: flippedCard === index ? 180 : 0 }}
                   style={{ transformStyle: 'preserve-3d' }}
                   onMouseEnter={() => setFlippedCard(index)}
                   onMouseLeave={() => setFlippedCard(null)}
                 >
                   {/* Front Side */}
-                  <div className="absolute w-full h-full backface-hidden rounded-xl shadow-md border border-gray-200 bg-white p-6">
-                    <div className="h-full flex flex-col items-center justify-center">
-                      <h3 className="text-2xl font-bold text-gray-800 text-center mb-3">{card.title}</h3>
-                      <p className="text-gray-600 text-lg text-center">{card.description}</p>
-                    </div>
+                  <div
+                    className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-cover p-8 flex flex-col justify-end"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${card.img})`,
+                      backfaceVisibility: 'hidden',
+                    }}
+                  >
+                    <h3 className="text-3xl font-bold text-white mb-4">{card.title}</h3>
+                    <p className="text-white text-lg">{card.description}</p>
                   </div>
 
                   {/* Back Side */}
-                  <div className="absolute w-full h-full rotate-y-180 backface-hidden rounded-xl shadow-md border border-gray-200 bg-white p-6">
-                    <div className="h-full flex flex-col items-center justify-center">
-                      <p className="text-gray-700 text-center text-lg">{card.backText}</p>
-                    
+                  <div
+                    className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-white p-6 flex flex-col justify-between items-start transform rotate-y-180"
+                    style={{
+                      backfaceVisibility: 'hidden',
+                    }}
+                  >
+                    <div className="overflow-y-auto max-h-full pr-1 custom-scroll">
+                      <p className="text-gray-900 font-medium text-base leading-relaxed whitespace-pre-line">
+                        {card.backText}
+                      </p>
                     </div>
+                    <p className='font-extralight'>
+                      {card.title}
+                      <br></br>
+                      {card.description}
+                    </p>
                   </div>
                 </motion.div>
               )}
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
 
       {/* Gradient edges */}
-      <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-      <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
+      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
     </div>
+    </div>
+    
   );
 };
 
