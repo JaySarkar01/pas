@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { Inter } from "next/font/google";
+  const inter = Inter({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-inter',
+    display: 'swap',
+  });
 
 const testimonials = [
   { 
@@ -47,7 +54,7 @@ export default function TestimonialCarousel() {
   };
 
   return (
-    <div className="relative max-w-3xl mx-auto p-4">
+    <div className={`relative max-w-3xl mx-auto p-4 ${inter.className}`}>
       <div className="relative overflow-hidden">
         <div className="transition-transform duration-300 ease-in-out">
         <div className="h-full p-8 bg-gradient-to-br from-white via-orange-100 to-orange-300 rounded-2xl shadow-lg border border-orange-200 flex flex-col">

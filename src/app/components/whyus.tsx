@@ -3,6 +3,13 @@ import { useAnimation, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import TestimonialSlider from '@/app/components/swapin';
+import { Inter } from "next/font/google";
+  const inter = Inter({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-inter',
+    display: 'swap',
+  });
 
 const testimonials = [
   {
@@ -75,7 +82,7 @@ const cardHoverVariants = {
 
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
   <motion.div
-    className="h-full p-8 bg-gradient-to-br from-white via-orange-100 to-orange-300 rounded-2xl shadow-lg border border-orange-200 flex flex-col"
+    className="h-full p-8 bg-gradient-to-br from-white via-blue-100 to-blue-300 rounded-2xl shadow-lg border border-purple-200 flex flex-col"
     whileHover="hover"
     variants={cardHoverVariants}
     initial="hidden"
@@ -161,7 +168,7 @@ export default function ImpactSection() {
 
   return (
     <motion.section
-      className="py-20 px-6 sm:px-10 bg-white"
+      className={`py-10 px-6 pb-0 mb-0 sm:px-10 bg-white ${inter.className}`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-100px' }}
@@ -196,14 +203,6 @@ export default function ImpactSection() {
           <AutoScrollingPartners partners={partners} />
         </motion.div>
 
-        <motion.div className="flex flex-col sm:flex-row justify-center gap-4" initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-          <motion.button className="px-8 py-4 bg-amber-100 hover:bg-amber-200 font-medium rounded-xl hover:opacity-90 transition-opacity shadow-lg" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            Start Free Trial
-          </motion.button>
-          <motion.button className="px-8 py-4 bg-white text-gray-800 font-medium rounded-xl hover:bg-gray-50 transition-colors border border-gray-200 shadow-sm" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            Contact us
-          </motion.button>
-        </motion.div>
       </div>
     </motion.section>
   );

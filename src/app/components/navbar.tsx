@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from 'next/image';
 import { Menu, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Navbar = () => {
@@ -8,15 +9,18 @@ const Navbar = () => {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-20 py-4 md:py-8 lg:py-10 bg-white">
+      <nav className="flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-20 py-4 md:py-8 lg:py-10 bg-white z-50">
         {/* Left Logo */}
-        <div className="flex items-center">
-          <img 
-            src="/logo/PAS-logo.svg" 
-            alt="Parvati & Sons" 
-            className="h-6 sm:h-7 md:h-8 lg:h-12" 
-          />
-        </div>
+        <div className="flex items-center justify-start">
+  <Image
+    src="/logo/PAS-logo.svg"
+    alt="Parvati & Sons"
+    width={230} // you can adjust this
+    height={80} // and this as per actual image dimensions
+    className="h-8 sm:h-9 md:h-8 lg:h-12 xl:h-14"
+  />
+</div>
+
 
         {/* Centered Navigation Links (Hidden in Mobile) */}
         <ul className="hidden lg:flex space-x-4 xl:space-x-14 text-gray-900 font-medium font-sans text-lg xl:text-2xl">
@@ -55,10 +59,12 @@ const Navbar = () => {
       >
         {/* Sidebar Header */}
         <div className="flex justify-between items-center px-4 py-4 border-b border-gray-300">
-          <img 
+        <Image
             src="/logo/PAS-logo.svg" 
-            alt="Parvati & Sons" 
-            className="h-6" 
+            alt="Parvati & Sons"
+            width={120}
+            height={6}
+            // className="h-6" 
           />
           <button 
             onClick={() => setIsOpen(false)}

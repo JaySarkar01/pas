@@ -1,27 +1,30 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 .backface-hidden {
     backface-visibility: hidden;
   }
-  
+
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 2px;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 2px;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
   }

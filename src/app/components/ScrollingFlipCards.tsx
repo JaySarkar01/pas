@@ -1,6 +1,13 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import { Inter } from "next/font/google";
+  const inter = Inter({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-inter',
+    display: 'swap',
+  });
 
 const cardData = [
   {
@@ -87,16 +94,16 @@ const OrangeCardBanner = () => {
     });
 
   const getCardPosition = (index: number) => {
-    const positions = ['translateY(0)', 'translateY(40px)', 'translateY(-40px)'];
+    const positions = ['translateY(40px)', 'translateY(-40px)'];
     return positions[index % positions.length];
   };
 
   return (
-    <div className=' flex flex-col justify-between'>
-    <div className="flex flex-row justify-around items-center mb-10">
+    <div className={`${inter.className} flex flex-col justify-between mb-20`}>
+    {/* <div className="flex flex-row justify-around items-center mb-10">
         <h1 className='text-4xl font-medium text-gray-900'>Parvati and Sons Grows with <span className='text-blue-600 text-4xl'>you!</span></h1>
         <h3 className='text-2xl font-semibold'>15,000+ Businesses</h3>
-      </div>
+      </div> */}
       <div
       className="relative w-full py-24 overflow-hidden bg-white"
       ref={containerRef}
@@ -122,17 +129,26 @@ const OrangeCardBanner = () => {
               transition={{ type: 'spring', stiffness: 300 }}
             >
               {isMobile ? (
-                <div
+                <div>
+<div
                   className="relative w-full h-full rounded-2xl shadow-xl border border-gray-200 bg-cover bg-center flex flex-col justify-end p-6"
                   style={{
                     backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${card.img})`,
                   }}
                 >
+          
                   <div className="text-white">
                     <h3 className="text-xl font-bold mb-2">{card.title}</h3>
                     <p className="text-sm opacity-90">{card.description}</p>
+                    
                   </div>
+                  
                 </div>
+                  <p className="text-gray-950 font-medium text-base leading-relaxed whitespace-pre-line mb-10">
+                        {card.backText}
+                      </p>
+                </div>
+                
               ) : (
                 <motion.div
                   className="relative w-full h-full transition-transform duration-300"
@@ -177,10 +193,7 @@ const OrangeCardBanner = () => {
           ))}
         </motion.div>
       </div>
-
-      {/* Gradient edges */}
-      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+     
     </div>
     </div>
     
