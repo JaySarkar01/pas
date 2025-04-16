@@ -82,7 +82,7 @@ buttons.forEach((button) => {
 
     return () => {
       tl.kill();
-      buttons.forEach((button: any) => {
+      buttons.forEach((button) => {
         button.removeEventListener("mouseenter", () => {});
         button.removeEventListener("mouseleave", () => {});
       });
