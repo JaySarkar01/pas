@@ -88,29 +88,31 @@ export default function CareerHero() {
         ease: "power2.out"
       }, "-=0.3");
 
-    const buttons = gsap.utils.toArray(".career-button");
-    buttons.forEach((button: any) => {
-      button.addEventListener("mouseenter", () => {
-        gsap.to(button, {
-          y: -4,
-          scale: 1.05,
-          duration: 0.2,
-          ease: "power2.out"
+      const buttons = gsap.utils.toArray(".career-button") as HTMLElement[];
+
+      buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => {
+          gsap.to(button, {
+            y: -4,
+            scale: 1.05,
+            duration: 0.2,
+            ease: "power2.out"
+          });
+        });
+        button.addEventListener("mouseleave", () => {
+          gsap.to(button, {
+            y: 0,
+            scale: 1,
+            duration: 0.2,
+            ease: "power2.out"
+          });
         });
       });
-      button.addEventListener("mouseleave", () => {
-        gsap.to(button, {
-          y: 0,
-          scale: 1,
-          duration: 0.2,
-          ease: "power2.out"
-        });
-      });
-    });
+      
 
     return () => {
       gsap.killTweensOf(".particle");
-      buttons.forEach((button: any) => {
+      buttons.forEach((button) => {
         button.removeEventListener("mouseenter", () => {});
         button.removeEventListener("mouseleave", () => {});
       });

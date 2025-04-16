@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -20,10 +20,9 @@ const TextHoverEffect = ({
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
+  const [setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
   const [isMobile, setIsMobile] = useState(false);
-  const controls = useAnimation();
   const timelineRef = useRef<gsap.core.Timeline>(null);
 
   // Mobile detection

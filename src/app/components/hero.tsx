@@ -56,23 +56,29 @@ export default function HeroSection() {
       ease: "power2.out"
     }, "-=0.4");
 
-    const buttons = gsap.utils.toArray(".hero-button");
-    buttons.forEach((button: any) => {
-      button.addEventListener("mouseenter", () => {
-        gsap.to(button, {
-          y: -3,
-          duration: 0.2,
-          ease: "power2.out"
-        });
-      });
-      button.addEventListener("mouseleave", () => {
-        gsap.to(button, {
-          y: 0,
-          duration: 0.2,
-          ease: "power2.out"
-        });
-      });
+    const buttons = gsap.utils.toArray(".hero-button") as HTMLElement[];
+
+buttons.forEach((button) => {
+  const handleMouseEnter = () => {
+    gsap.to(button, {
+      y: -3,
+      duration: 0.2,
+      ease: "power2.out"
     });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(button, {
+      y: 0,
+      duration: 0.2,
+      ease: "power2.out"
+    });
+  };
+
+  button.addEventListener("mouseenter", handleMouseEnter);
+  button.addEventListener("mouseleave", handleMouseLeave);
+});
+
 
     return () => {
       tl.kill();
