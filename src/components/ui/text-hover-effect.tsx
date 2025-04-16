@@ -20,12 +20,11 @@ const TextHoverEffect = ({
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
-  const [setHovered] = useState(false);
+  const [,setHovered] = useState(false); // ✅ FIXED
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
   const [isMobile, setIsMobile] = useState(false);
-  const timelineRef = useRef<gsap.core.Timeline>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -35,7 +34,6 @@ const TextHoverEffect = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Automatic animation
   useEffect(() => {
     if (automatic) {
       const interval = setInterval(() => {
@@ -51,9 +49,8 @@ const TextHoverEffect = ({
     }
   }, [automatic]);
 
-  // Update mask position
   useEffect(() => {
-    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
+    if (svgRef.current) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
       const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
@@ -64,7 +61,6 @@ const TextHoverEffect = ({
     }
   }, [cursor]);
 
-  // GSAP ScrollTrigger setup
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       timelineRef.current = gsap.timeline({
@@ -73,11 +69,9 @@ const TextHoverEffect = ({
           start: "top 80%",
           end: "bottom top",
           toggleActions: "play none none reset",
-          markers: false, // Set to true for debugging
         },
       });
 
-      // Animate the stroke dash
       timelineRef.current.fromTo(
         ".animated-stroke",
         { strokeDashoffset: 1000 },
@@ -89,7 +83,6 @@ const TextHoverEffect = ({
         0
       );
 
-      // Fade in the background text
       timelineRef.current.fromTo(
         ".background-stroke",
         { opacity: 0 },
@@ -101,16 +94,14 @@ const TextHoverEffect = ({
         0
       );
 
-      // Start mask animation when in view
-      timelineRef.current.call(
-        () => {
-          if (automatic) {
-            setCursor({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-          }
-        },
-        
-        
-      );
+      timelineRef.current.call(() => {
+        if (automatic) {
+          setCursor({
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+          });
+        }
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -133,16 +124,13 @@ const TextHoverEffect = ({
         xmlns="http://www.w3.org/2000/svg"
         onMouseEnter={() => !isMobile && setHovered(true)}
         onMouseLeave={() => !isMobile && setHovered(false)}
-        onMouseMove={(e) =>
-          !isMobile && setCursor({ x: e.clientX, y: e.clientY })
-        }
+        onMouseMove={(e) => !isMobile && setCursor({ x: e.clientX, y: e.clientY })}
         onClick={(e) => isMobile && setCursor({ x: e.clientX, y: e.clientY })}
         className="select-none cursor-default m-0 p-0"
         aria-label={text}
         role="img"
       >
         <defs>
-          {/* Fill Gradient - Always visible */}
           <linearGradient
             id="textGradient"
             gradientUnits="userSpaceOnUse"
@@ -157,14 +145,12 @@ const TextHoverEffect = ({
             <stop offset="100%" stopColor="#8b5cf6" />
           </linearGradient>
 
-          {/* Stroke Gradient */}
           <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#eab308" />
             <stop offset="50%" stopColor="#ef4444" />
             <stop offset="100%" stopColor="#3b82f6" />
           </linearGradient>
 
-          {/* Reveal Mask */}
           <motion.radialGradient
             id="revealMask"
             gradientUnits="userSpaceOnUse"
@@ -192,7 +178,6 @@ const TextHoverEffect = ({
           </mask>
         </defs>
 
-        {/* Background text - fades in on scroll */}
         <text
           x="50%"
           y="50%"
@@ -204,7 +189,6 @@ const TextHoverEffect = ({
           {text}
         </text>
 
-        {/* Animated stroke - controlled by GSAP */}
         <text
           x="50%"
           y="50%"
@@ -218,7 +202,6 @@ const TextHoverEffect = ({
           {text}
         </text>
 
-        {/* Main gradient text with mask */}
         <text
           x="50%"
           y="50%"
