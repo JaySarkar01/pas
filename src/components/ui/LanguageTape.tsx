@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 const languages = [
   "JavaScript", "TypeScript", "Python", "C++", "Java", "Kotlin",
-  , "Dart", "HTML", "CSS", "SQL", "Shell"
+  "Dart", "HTML", "CSS", "SQL", "Shell"
 ];
 
 const ScrollingTape = () => {
