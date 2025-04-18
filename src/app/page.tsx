@@ -6,10 +6,9 @@ import ClientResultsDisplay from "@/components/ClientResultsDisplay";
 import FlipCardBanner from "@/components/ScrollingFlipCards";
 import ScrollingTape from "@/components/ui/LanguageTape";
 import WhyChooseUsSection from "@/components/ui/WhyChooseUsSection";
-import TextHoverEffect from "@/components/ui/Text-hover-effect";
+import TextHoverEffect from "@/components/ui/text-hover-effect";
 import BrandHeroSection from "@/components/BrandEndorsementSection";
 import CareerHero from "../components/CareerHero";
-import WorldMap from "@/components/ui/world-map";
 
 export default function Home() {
   const textRef = useRef(null);
@@ -50,7 +49,6 @@ export default function Home() {
         <CareerHero/>
       </section>
       <section>
-        <WorldMap/>
       </section>
       <section className="fixed bottom-0 left-0 right-0 z-40 shadow-lg shadow-black">
         <ScrollingTape />

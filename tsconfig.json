@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.jsx", "src/app/components/gradienttext.jsx", "src/components/ui/Text-hover-effect.js", "src/components/ui/Underlinetxt.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.jsx", "src/app/components/gradienttext.jsx", "src/components/ui/text-hover-effect.js", "src/components/ui/Underlinetxt.js"],
   "exclude": ["node_modules"]
 }
