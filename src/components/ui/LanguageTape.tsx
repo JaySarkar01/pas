@@ -1,12 +1,5 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Inter } from "next/font/google";
-  const inter = Inter({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    variable: '--font-inter',
-    display: 'swap',
-  });
 const languages = [
   "JavaScript", "TypeScript", "Python", "C++", "Java", "Kotlin",
   , "Dart", "HTML", "CSS", "SQL", "Shell"
@@ -28,7 +21,7 @@ const ScrollingTape = () => {
   };
 
   return (
-    <div className={`${inter.className} overflow-hidden whitespace-nowrap bg-black w-full py-1 sm:py-2 md:py-2`}>
+    <div className={`overflow-hidden whitespace-nowrap bg-black w-full py-1 sm:py-2 md:py-2`}>
       <motion.div
         className="flex gap-6 sm:gap-10 text-sm sm:text-base md:text-lg font-medium text-white"
         variants={scrollVariants}

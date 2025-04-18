@@ -13,7 +13,7 @@ import { Inter } from "next/font/google";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HeroSection() {
+export default function BrandHeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

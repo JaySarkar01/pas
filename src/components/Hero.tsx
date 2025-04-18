@@ -1,8 +1,8 @@
 "uce client"
 import React from "react";
-import WhatsAppInput from "@/app/components/whatsendbox"
-import HighlightedText from "@/app/components/underlinetxt";
+import WhatsAppInput from "@/components/ui/whatsendbox";
 import Image from 'next/image';
+import HighlightedText from "./ui/Underlinetxt";
 
 import { Inter } from "next/font/google";
   const inter = Inter({
@@ -13,7 +13,7 @@ import { Inter } from "next/font/google";
   });
 
 
-const Landingsec = () => {
+const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row justify-around items-center px-6 md:px-16 py-12 gap-3">
       {/* Left Section */}
@@ -49,4 +49,4 @@ const Landingsec = () => {
   );
 };
 
-export default Landingsec;
+export default Hero;

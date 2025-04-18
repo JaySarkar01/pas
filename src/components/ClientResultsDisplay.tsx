@@ -2,7 +2,7 @@
 import { useAnimation, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import TestimonialSlider from '@/app/components/swapin';
+import TestimonialSlider from "@/components/Swapin";
 import { Inter } from "next/font/google";
   const inter = Inter({
     subsets: ['latin'],
@@ -163,7 +163,7 @@ const AutoScrollingPartners = ( { partners }: Props) => {
   );
 };
 
-export default function ImpactSection() {
+export default function ClientResultsDisplay() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (

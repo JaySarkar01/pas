@@ -3,13 +3,6 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Inter } from "next/font/google";
-  const inter = Inter({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    variable: '--font-inter',
-    display: 'swap',
-  });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,7 +126,7 @@ export default function CareerHero() {
   ));
 
   return (
-    <section ref={sectionRef} className={`${inter.className} relative w-full px-6 md:px-12 py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white text-gray-900 text-center overflow-hidden`}>
+    <section ref={sectionRef} className={`relative w-full px-6 md:px-12 py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white text-gray-900 text-center overflow-hidden`}>
       {/* Particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {particles}

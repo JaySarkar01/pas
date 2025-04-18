@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
     display: 'swap',
   });
 
-const Combanner = () => {
+const WhyChooseUsSection = () => {
   return (
     <div className={`${inter.className} flex flex-col md:flex-row items-start justify-between max-w-7xl mx-auto border-2 border-gray-200 border-dashed rounded-2xl p-8 gap-8 bg-white shadow-sm`}>
       
@@ -50,4 +50,4 @@ const Combanner = () => {
   );
 };
 
-export default Combanner;
+export default WhyChooseUsSection;
