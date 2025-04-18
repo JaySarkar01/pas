@@ -90,7 +90,7 @@ buttons.forEach((button) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className={`${inter.className} w-full px-6 md:px-12 py-12 md:py-20 bg-white text-gray-900`}>
+    <section ref={sectionRef} className={`${inter.className} w-full px-6 md:px-12 py-12 md:py-0 mb-16 bg-white text-gray-900`}>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <div className="space-y-6">

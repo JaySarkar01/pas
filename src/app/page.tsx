@@ -9,6 +9,7 @@ import WhyChooseUsSection from "@/components/ui/WhyChooseUsSection";
 import TextHoverEffect from "@/components/ui/text-hover-effect";
 import BrandHeroSection from "@/components/BrandEndorsementSection";
 import CareerHero from "../components/CareerHero";
+import ProjectShowSection from "@/components/ProjectShowSection";
 
 export default function Home() {
   const textRef = useRef(null);
@@ -17,7 +18,7 @@ export default function Home() {
   return (
     <main className="">
       <section>
-        <Hero/>
+        <Hero />
       </section>
       <section>
         <ClientResultsDisplay />
@@ -28,8 +29,8 @@ export default function Home() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <TextHoverEffect 
-            text="PARVATI AND SONS" 
+          <TextHoverEffect
+            text="PARVATI AND SONS"
             size="md"
             automatic={isInView}
           />
@@ -38,18 +39,20 @@ export default function Home() {
       <section>
         <FlipCardBanner />
       </section>
-      
+
       <section>
-        <BrandHeroSection/>
+        <BrandHeroSection />
       </section>
       <section className="mb-16 flex items-center justify-center">
-        <WhyChooseUsSection/>
+        <WhyChooseUsSection />
       </section>
       <section>
-        <CareerHero/>
+        <CareerHero />
       </section>
       <section>
+        <ProjectShowSection/>
       </section>
+      <section></section>
       <section className="fixed bottom-0 left-0 right-0 z-40 shadow-lg shadow-black">
         <ScrollingTape />
       </section>
