@@ -1,11 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Image from 'next/image';
 import { Menu, X, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+        document.body.style.touchAction = "none"; // Prevents touch scroll
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.touchAction = "";
+      }
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [isOpen]);
+  
+  
   return (
     <>
       {/* Top Navbar */}

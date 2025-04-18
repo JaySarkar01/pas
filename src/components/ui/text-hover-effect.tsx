@@ -20,7 +20,6 @@ const TextHoverEffect = ({
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
-  const [,setHovered] = useState(false); // ✅ FIXED
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
   const [isMobile, setIsMobile] = useState(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
@@ -122,8 +121,6 @@ const TextHoverEffect = ({
         viewBox="0 0 300 50"
         preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
-        onMouseEnter={() => !isMobile && setHovered(true)}
-        onMouseLeave={() => !isMobile && setHovered(false)}
         onMouseMove={(e) => !isMobile && setCursor({ x: e.clientX, y: e.clientY })}
         onClick={(e) => isMobile && setCursor({ x: e.clientX, y: e.clientY })}
         className="select-none cursor-default m-0 p-0"

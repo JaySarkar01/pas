@@ -8,8 +8,8 @@ import { Inter } from "next/font/google";
     display: 'swap',
   });
 const languages = [
-  "JavaScript", "TypeScript", "Python", "C++", "Java", "Kotlin", "Go", "Rust",
-  "Swift", "PHP", "Ruby", "Dart", "HTML", "CSS", "SQL", "Shell", "R", "Perl"
+  "JavaScript", "TypeScript", "Python", "C++", "Java", "Kotlin",
+  , "Dart", "HTML", "CSS", "SQL", "Shell"
 ];
 
 const ScrollingTape = () => {
@@ -28,9 +28,9 @@ const ScrollingTape = () => {
   };
 
   return (
-    <div className={`${inter.className} overflow-hidden whitespace-nowrap bg-blue-900 w-full py-1 sm:py-2 md:py-2`}>
+    <div className={`${inter.className} overflow-hidden whitespace-nowrap bg-black w-full py-1 sm:py-2 md:py-2`}>
       <motion.div
-        className="flex gap-6 sm:gap-10 text-sm sm:text-base md:text-lg font-medium text-blue-100"
+        className="flex gap-6 sm:gap-10 text-sm sm:text-base md:text-lg font-medium text-white"
         variants={scrollVariants}
         animate="animate"
       >

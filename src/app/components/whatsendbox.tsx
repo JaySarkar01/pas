@@ -38,7 +38,8 @@ const WhatsAppInput = () => {
         type="text"
         placeholder="Type your message here..."
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => {
+          setMessage(e.target.value)}}
         className={`flex-1 w-full text-lg outline-none border-none px-4 py-2 sm:rounded-lg ${
           error ? "border-2 border-red-500 text-red-500" : "text-gray-700 placeholder-gray-400"
         }`}

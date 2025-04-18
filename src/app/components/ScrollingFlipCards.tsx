@@ -1,21 +1,30 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { Inter } from "next/font/google";
-  const inter = Inter({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    variable: '--font-inter',
-    display: 'swap',
-  });
 
-const cardData = [
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+interface CardData {
+  id: number;
+  title: string;
+  description: string;
+  backText: string;
+  img: string;
+}
+
+const cardData: CardData[] = [
   {
     id: 1,
     title: "Web Development",
     description: "Frontend and backend development services",
     backText:
-      "We specialize in React, Next.js, and Node.js to build fast, scalable web applications tailored to your business needs. Our expertise ensures seamless integration, optimized performance, and scalable architecture.",
+      "We specialize in React, Next.js, and Node.js to build fast, scalable web applications tailored to your business needs.",
     img: "/clients/tataji.webp",
   },
   {
@@ -23,7 +32,7 @@ const cardData = [
     title: "Mobile Apps",
     description: "Cross-platform mobile solutions",
     backText:
-      "Using React Native and Flutter, we create beautiful native experiences for both iOS and Android. Our apps are fast, responsive, and user-friendly across devices.",
+      "Using React Native and Flutter, we create beautiful native experiences for both iOS and Android.",
     img: "/clients/tataji.webp",
   },
   {
@@ -53,150 +62,198 @@ const cardData = [
 ];
 
 const OrangeCardBanner = () => {
+  // Used for mobile card swapping
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Functions for custom navigation on mobile
+  const nextCard = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+  };
+
+  const prevCard = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Get the active card from cardData
+  const activeCard = cardData[currentIndex];
+
+  // Other states for desktop behavior (auto-scrolling & flip on hover)
   const [isMobile, setIsMobile] = useState(false);
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
   const controls = useAnimation();
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // We duplicate cards for desktop auto‑scroll effect
   const duplicatedCards = [...cardData, ...cardData];
 
+  // Mobile detection
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Desktop auto‑scroll animation (only for non‑mobile)
   useEffect(() => {
-    controls.start({
-      x: ['0%', '-50%'],
-      transition: {
-        ease: 'linear',
-        duration: 40,
-        repeat: Infinity,
-        repeatType: 'loop',
-      },
-    });
-  }, [controls]);
+    if (!isMobile) {
+      controls.start({
+        x: ["0%", "-50%"],
+        transition: {
+          ease: "linear",
+          duration: 40,
+          repeat: Infinity,
+          repeatType: "loop",
+        },
+      });
+    }
+  }, [controls, isMobile]);
 
-  const handleMouseEnter = () => controls.stop();
-  const handleMouseLeave = () =>
-    controls.start({
-      x: ['0%', '-50%'],
-      transition: {
-        ease: 'linear',
-        duration: 40,
-        repeat: Infinity,
-        repeatType: 'loop',
-      },
-    });
+  const handleMouseEnter = () => {
+    if (!isMobile) controls.stop();
+  };
+  const handleMouseLeave = () => {
+    if (!isMobile)
+      controls.start({
+        x: ["0%", "-50%"],
+        transition: {
+          ease: "linear",
+          duration: 40,
+          repeat: Infinity,
+          repeatType: "loop",
+        },
+      });
+  };
 
+  // In our duplicated cards demo, you could adjust each card’s vertical position if needed.
   const getCardPosition = (index: number) => {
-    const positions = ['translateY(40px)', 'translateY(-40px)'];
+    const positions = ["translateY(0px)", "translateY(0px)"];
     return positions[index % positions.length];
   };
 
   return (
     <div className={`${inter.className} flex flex-col justify-between mb-20`}>
-    {/* <div className="flex flex-row justify-around items-center mb-10">
-        <h1 className='text-4xl font-medium text-gray-900'>Parvati and Sons Grows with <span className='text-blue-600 text-4xl'>you!</span></h1>
-        <h3 className='text-2xl font-semibold'>15,000+ Businesses</h3>
-      </div> */}
       <div
-      className="relative w-full py-24 overflow-hidden bg-white"
-      ref={containerRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      
-      <div className="flex sm:h-[300px] lg:h-[400px] items-center">
-        <motion.div
-          className="flex whitespace-nowrap items-end"
-          animate={controls}
-          style={{ height: '100%' }}
-        >
-          {duplicatedCards.map((card, index) => (
-            <motion.div
-              key={`${card.id}-${index}`}
-              className={`inline-flex mx-6 ${isMobile ? 'w-72 h-72' : 'w-100 h-100'}`}
-              style={{
-                perspective: 1000,
-                transform: getCardPosition(index),
-              }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+        className="relative w-full py-24 overflow-hidden bg-white"
+        ref={containerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {isMobile ? (
+          // MOBILE VIEW: one card with custom left/right buttons
+          <div className="flex flex-col items-center">
+            {/* Card Image Container */}
+            <div className="relative w-full h-[400px] rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+              <motion.div
+                className="relative w-full h-full bg-cover bg-center flex flex-col justify-end p-6"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${activeCard.img})`,
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="text-white">
+                  <h3 className="text-xl font-bold mb-2">{activeCard.title}</h3>
+                  <p className="text-sm opacity-90">{activeCard.description}</p>
+                </div>
+              </motion.div>
+              {/* Navigation Buttons */}
+              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2">
+                <button
+                  onClick={prevCard}
+                  className="bg-white text-black rounded-full p-2 shadow-lg"
+                >
+                  &lt;
+                </button>
+              </div>
+              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2">
+                <button
+                  onClick={nextCard}
+                  className="bg-white text-black rounded-full p-2 shadow-lg"
+                >
+                  &gt;
+                </button>
+              </div>
+            </div>
+            {/* Card Back Text (Below Image) */}
+            <motion.p
+              className="text-gray-950 font-medium text-base leading-relaxed whitespace-pre-line mt-4 px-4 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              {isMobile ? (
-                <div>
-<div
-                  className="relative w-full h-full rounded-2xl shadow-xl border border-gray-200 bg-cover bg-center flex flex-col justify-end p-6"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${card.img})`,
-                  }}
-                >
-          
-                  <div className="text-white">
-                    <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                    <p className="text-sm opacity-90">{card.description}</p>
-                    
-                  </div>
-                  
-                </div>
-                  <p className="text-gray-950 font-medium text-base leading-relaxed whitespace-pre-line mb-10">
-                        {card.backText}
-                      </p>
-                </div>
-                
-              ) : (
+              {activeCard.backText}
+            </motion.p>
+          </div>
+        ) : (
+          // Desktop view: auto-scrolling, flipping cards on hover
+          <div className="flex sm:h-[300px] lg:h-[400px] items-center">
+            <motion.div
+              className="flex whitespace-nowrap items-end"
+              animate={controls}
+              style={{ height: "100%" }}
+            >
+              {duplicatedCards.map((card, index) => (
                 <motion.div
-                  className="relative w-full h-full transition-transform duration-300"
-                  animate={{ rotateY: flippedCard === index ? 180 : 0 }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                  onMouseEnter={() => setFlippedCard(index)}
-                  onMouseLeave={() => setFlippedCard(null)}
+                  key={`${card.id}-${index}`}
+                  className={`inline-flex mx-6 ${isMobile ? "w-72 h-72" : "w-100 h-100"}`}
+                  style={{
+                    perspective: 1000,
+                    transform: getCardPosition(index),
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {/* Front Side */}
-                  <div
-                    className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-cover p-8 flex flex-col justify-end"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${card.img})`,
-                      backfaceVisibility: 'hidden',
-                    }}
+                  <motion.div
+                    className="relative w-full h-full transition-transform duration-300"
+                    animate={{ rotateY: flippedCard === index ? 180 : 0 }}
+                    style={{ transformStyle: "preserve-3d" }}
+                    onMouseEnter={() => setFlippedCard(index)}
+                    onMouseLeave={() => setFlippedCard(null)}
                   >
-                    <h3 className="text-3xl font-bold text-white mb-4">{card.title}</h3>
-                    <p className="text-white text-lg">{card.description}</p>
-                  </div>
-
-                  {/* Back Side */}
-                  <div
-                    className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-white p-6 flex flex-col justify-between items-start transform rotate-y-180"
-                    style={{
-                      backfaceVisibility: 'hidden',
-                    }}
-                  >
-                    <div className="overflow-y-auto max-h-full pr-1 custom-scroll">
-                      <p className="text-gray-900 font-medium text-base leading-relaxed whitespace-pre-line">
-                        {card.backText}
+                    {/* Front Side */}
+                    <div
+                      className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-cover bg-center p-8 flex flex-col justify-end"
+                      style={{
+                        backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${card.img})`,
+                        backfaceVisibility: "hidden",
+                      }}
+                    >
+                      <h3 className="text-3xl font-bold text-white mb-4">
+                        {card.title}
+                      </h3>
+                      <p className="text-white text-lg">{card.description}</p>
+                    </div>
+      
+                    {/* Back Side */}
+                    <div
+                      className="absolute w-full h-full backface-hidden rounded-2xl shadow-2xl border border-gray-200 bg-white p-6 flex flex-col justify-between items-start transform rotate-y-180"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
+                      <div className="overflow-y-auto max-h-full pr-1">
+                        <p className="text-gray-900 font-medium text-base leading-relaxed whitespace-pre-line">
+                          {card.backText}
+                        </p>
+                      </div>
+                      <p className="font-extralight text-xs md:text-sm mt-2">
+                        {card.title}
+                        <br />
+                        {card.description}
                       </p>
                     </div>
-                    <p className='font-extralight'>
-                      {card.title}
-                      <br></br>
-                      {card.description}
-                    </p>
-                  </div>
+                  </motion.div>
                 </motion.div>
-              )}
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
+          </div>
+        )}
       </div>
-     
     </div>
-    </div>
-    
   );
 };
 
