@@ -39,7 +39,6 @@ export default function Home() {
       <section>
         <FlipCardBanner />
       </section>
-
       <section>
         <BrandHeroSection />
       </section>
@@ -52,7 +51,7 @@ export default function Home() {
       <section>
         <ProjectShowSection/>
       </section>
-      <section></section>
+      
       <section className="fixed bottom-0 left-0 right-0 z-40 shadow-lg shadow-black">
         <ScrollingTape />
       </section>

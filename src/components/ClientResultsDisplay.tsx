@@ -3,6 +3,7 @@ import { useAnimation, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import TestimonialSlider from "@/components/Swapin";
+import Image from "next/image";
 import { Inter } from "next/font/google";
   const inter = Inter({
     subsets: ['latin'],
@@ -98,11 +99,14 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
     <div className="flex items-center justify-between">
       <span className="text-sm font-medium text-gray-700">{testimonial.company}</span>
       <div className="w-18 h-18 rounded-lg bg-gray-50 p-2 flex items-center justify-center">
-        <img
-          src={testimonial.logo}
-          alt={testimonial.company}
-          className="max-h-17 max-w-[4.0rem] object-contain rounded-lg"
-        />
+        <Image
+         src={testimonial.logo}
+         alt={testimonial.company}
+         width={64} // Equivalent to 4.0rem = 64px
+         height={68} // Adjust height if needed based on aspect ratio
+         className="max-h-17 max-w-[4.0rem] object-contain rounded-lg"
+         unoptimized // Optional: if the image is remote or optimization isn't needed
+       />
       </div>
     </div>
   </motion.div>

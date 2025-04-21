@@ -38,46 +38,46 @@ export default function CareerHero() {
     tl.from(titleRef.current, {
       y: 50,
       opacity: 0,
-      duration: 1,
+      duration: 0.6,
       ease: "back.out(1.2)"
     })
       .from(highlightRef.current, {
         scale: 0,
         rotate: 10,
-        duration: 0.8,
+        duration: 0.5,
         ease: "elastic.out(1, 0.5)"
       }, "-=0.5")
       .from(subtitleRef.current, {
         y: 30,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.5,
         ease: "power3.out"
       }, "-=0.4")
       .from(".highlight-text", {
         scale: 1.2,
         backgroundColor: "#fff",
-        duration: 0.6,
+        duration: 0.3,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.3")
       .from(buttonsRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.3,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.3")
       .from(avatarsRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.3,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.2")
       .from(arrowRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        duration: 0.3,
         ease: "power2.out"
       }, "-=0.3");
 

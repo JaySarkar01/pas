@@ -185,7 +185,7 @@ export default function ProjectShowcaseBlock() {
                   variants={imageVariants}
                 >
                   <Image
-                    src="https://agencypartner.com/wp-content/uploads/2021/09/spa-fea.png"
+                    src="https://agencypartner.com/wp-content/uploads/2021/11/Mask-Group-75.png"
                     alt="Goodwill website main page"
                     width={800}
                     height={600}
@@ -345,7 +345,7 @@ export default function ProjectShowcaseBlock() {
                   variants={imageVariants}
                 >
                   <Image
-                    src="https://agencypartner.com/wp-content/uploads/2021/09/spa-fea.png"
+                    src="https://agencypartner.com/wp-content/uploads/2021/11/MicrosoftTeams-image-6.png"
                     alt="Goodwill website main page"
                     width={800}
                     height={600}
