@@ -57,7 +57,7 @@ export default function TestimonialCarousel() {
     <div className={`relative max-w-3xl mx-auto p-4 ${inter.className}`}>
       <div className="relative overflow-hidden">
         <div className="transition-transform duration-300 ease-in-out">
-        <div className="h-full p-8 bg-gradient-to-br from-white via-orange-100 to-orange-300 rounded-2xl shadow-lg border border-orange-200 flex flex-col">
+        <div className="p-8 py-5 bg-gradient-to-br from-white via-blue-100 to-blue-300 rounded-2xl shadow-lg border border-purple-200 flex flex-col">
 
 
             <div className="flex flex-col md:flex-row gap-6">
@@ -66,7 +66,7 @@ export default function TestimonialCarousel() {
                 <h3 className="text-xl font-semibold mt-2">{testimonials[currentIndex].title}</h3>
                 <p className="text-gray-600 mt-2">{testimonials[currentIndex].description}</p>
               </div>
-              <div className="flex flex-col items-center md:items-end justify-between">
+              <div className="flex flex-row items-end justify-between">
                 <div className="text-sm font-medium text-gray-500">{testimonials[currentIndex].company}</div>
                 <div className="w-19 h-19 rounded-lg bg-gray-50 p-2 mt-2 flex items-center justify-center">
                   <img 
