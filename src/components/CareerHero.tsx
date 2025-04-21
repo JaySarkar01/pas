@@ -28,23 +28,23 @@ export default function CareerHero() {
     gsap.to(".particle", {
       y: -20,
       opacity: 0,
-      duration: 3,
+      duration: 2.5,
       stagger: 0.1,
       repeat: -1,
-      yoyo: true,
+      yoyo: false,
       ease: "sine.inOut"
     });
 
     tl.from(titleRef.current, {
       y: 50,
       opacity: 0,
-      duration: 0.6,
+      duration: 0.8,
       ease: "back.out(1.2)"
     })
       .from(highlightRef.current, {
         scale: 0,
         rotate: 10,
-        duration: 0.5,
+        duration: 0.7,
         ease: "elastic.out(1, 0.5)"
       }, "-=0.5")
       .from(subtitleRef.current, {
@@ -56,28 +56,28 @@ export default function CareerHero() {
       .from(".highlight-text", {
         scale: 1.2,
         backgroundColor: "#fff",
-        duration: 0.3,
+        duration: 0.5,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.3")
       .from(buttonsRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.5,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.3")
       .from(avatarsRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.5,
         stagger: 0.1,
         ease: "power2.out"
       }, "-=0.2")
       .from(arrowRef.current, {
         y: 20,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.5,
         ease: "power2.out"
       }, "-=0.3");
 
@@ -88,7 +88,7 @@ export default function CareerHero() {
           gsap.to(button, {
             y: -4,
             scale: 1.05,
-            duration: 0.2,
+            duration: 0.4,
             ease: "power2.out"
           });
         });

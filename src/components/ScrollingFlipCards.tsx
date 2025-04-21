@@ -62,7 +62,7 @@ const cardData: CardData[] = [
 ];
 
 const OrangeCardBanner = () => {
-  // Used for mobile card swapping
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Functions for custom navigation on mobile

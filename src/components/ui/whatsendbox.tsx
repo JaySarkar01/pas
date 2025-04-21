@@ -25,7 +25,7 @@ const WhatsAppInput = () => {
       return;
     }
 
-    const phoneNumber = "+919368043648"; // Replace with WhatsApp number
+    const phoneNumber = "+919837994101"; // Replace with WhatsApp number
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
