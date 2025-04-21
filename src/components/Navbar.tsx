@@ -31,9 +31,9 @@ const Navbar = () => {
   <Image
     src="/logo/PAS-logo.svg"
     alt="Parvati & Sons"
-    width={230} // you can adjust this
+    width={150} // you can adjust this
     height={80} // and this as per actual image dimensions
-    className="h-8 sm:h-9 md:h-8 lg:h-12 xl:h-14"
+    className="h-8 sm:h-9 md:h-8 lg:h-12 xl:h-14 flex"
   />
 </div>
 
