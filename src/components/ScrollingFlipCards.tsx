@@ -138,7 +138,7 @@ const OrangeCardBanner = () => {
   return (
     <div className={`${inter.className} flex flex-col justify-between mb-10`}>
       <div
-        className="relative w-full py-20 overflow-hidden bg-white"
+        className="relative w-full py-25 overflow-hidden bg-white"
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

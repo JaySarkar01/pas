@@ -10,6 +10,8 @@ import TextHoverEffect from "@/components/ui/text-hover-effect";
 import BrandHeroSection from "@/components/BrandEndorsementSection";
 import CareerHero from "../components/CareerHero";
 import ProjectShowSection from "@/components/ProjectShowSection";
+import ReviewSection from "@/components/ui/ReviewSection"
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const textRef = useRef(null);
@@ -51,10 +53,15 @@ export default function Home() {
       <section>
         <ProjectShowSection/>
       </section>
-      
+      <section>
+        <ReviewSection/>
+      </section>
       <section className="fixed bottom-0 left-0 right-0 z-40 shadow-lg shadow-black">
         <ScrollingTape />
       </section>
+      <footer>
+        <Footer/>
+      </footer>
     </main>
   );
 }

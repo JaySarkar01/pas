@@ -5,7 +5,7 @@ const WhatsAppInput = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   const [shake, setShake] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false); // Prevents multiple clicks
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const sendMessage = () => {
     if (message.trim() === "" || error) {
