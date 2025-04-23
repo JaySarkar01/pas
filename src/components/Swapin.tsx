@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Inter } from "next/font/google";
+import Image from "next/image";
   const inter = Inter({
     subsets: ['latin'],
     weight: ['400', '700'],
@@ -69,7 +70,7 @@ export default function TestimonialCarousel() {
               <div className="flex flex-row items-end justify-between">
                 <div className="text-sm font-medium text-gray-500">{testimonials[currentIndex].company}</div>
                 <div className="w-19 h-19 rounded-lg bg-gray-50 p-2 mt-2 flex items-center justify-center">
-                  <img 
+                  <Image 
                     src={testimonials[currentIndex].logo} 
                     alt={testimonials[currentIndex].company} 
                     className="max-h-18 max-w-[4.0rem] object-contain rounded-lg"

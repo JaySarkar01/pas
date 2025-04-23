@@ -12,6 +12,8 @@ import CareerHero from "../components/CareerHero";
 import ProjectShowSection from "@/components/ProjectShowSection";
 import ReviewSection from "@/components/ui/ReviewSection"
 import Footer from "@/components/Footer";
+import HeroBannerCard from "@/components/ui/HeroBannerCard";
+import WorldMapDemo from "@/components/Call_map";
 
 export default function Home() {
   const textRef = useRef(null);
@@ -55,6 +57,12 @@ export default function Home() {
       </section>
       <section>
         <ReviewSection/>
+      </section>
+      <section>
+        <HeroBannerCard/>
+      </section>
+      <section>
+        <WorldMapDemo/>
       </section>
       <section className="fixed bottom-0 left-0 right-0 z-40 shadow-lg shadow-black">
         <ScrollingTape />

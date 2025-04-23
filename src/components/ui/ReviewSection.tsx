@@ -22,7 +22,7 @@ const reviews: Review[] = [
     role: "Marketing Director",
     company: "TechGrowth Inc.",
     content:
-      "This product has completely transformed our workflow. The intuitive interface and powerful features have saved us countless hours of work and improved our team's productivity by 35%.",
+      "This product has completely transformed our workflow. The intuitive interface and powerful features have saved us countless hours of work and improved our team&quots productivity by 35%.",
     rating: 5,
     avatar: "/placeholder.svg?height=100&width=100",
   },
@@ -32,7 +32,7 @@ const reviews: Review[] = [
     role: "Software Engineer",
     company: "InnovateSoft",
     content:
-      "As a developer, I appreciate the clean architecture and excellent documentation. Integration was seamless and the support team is incredibly responsive. Best technical solution we've implemented this year.",
+      "As a developer, I appreciate the clean architecture and excellent documentation. Integration was seamless and the support team is incredibly responsive. Best technical solution we&quotve implemented this year.",
     rating: 5,
     avatar: "/placeholder.svg?height=100&width=100",
   },
@@ -42,7 +42,7 @@ const reviews: Review[] = [
     role: "Small Business Owner",
     company: "Craft & Create",
     content:
-      "This solution has been a game-changer for my small business. The pricing is fair and the ROI has been tremendous in just a few months. I've seen a 40% increase in customer engagement.",
+      "This solution has been a game-changer for my small business. The pricing is fair and the ROI has been tremendous in just a few months. I&quotve seen a 40% increase in customer engagement.",
     rating: 4,
     avatar: "/placeholder.svg?height=100&width=100",
   },
@@ -62,7 +62,7 @@ const reviews: Review[] = [
     role: "UX Designer",
     company: "DesignForward",
     content:
-      "The attention to detail in this product is remarkable. As a designer, I can tell that user experience was a top priority in development. It's rare to find such a thoughtful and well-crafted solution.",
+      "The attention to detail in this product is remarkable. As a designer, I can tell that user experience was a top priority in development. It&quots rare to find such a thoughtful and well-crafted solution.",
     rating: 4,
     avatar: "/placeholder.svg?height=100&width=100",
   },
@@ -120,7 +120,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
         ))}
       </div>
 
-      <p className="text-gray-950 font-medium text-base leading-relaxed whitespace-pre-line mt-4 px-4 text-center">"{review.content}"</p>
+      <p className="text-gray-950 font-medium text-base leading-relaxed whitespace-pre-line mt-4 px-4 text-center">&quot{review.content}&quot</p>
     </div>
   )
 }
@@ -157,7 +157,7 @@ export default function ReviewSection() {
     <section className="py-0 mb-10 bg-white overflow-hidden">
       <div className="container mx-auto px-4 mb-12">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400">
             What Our Customers Say
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mb-6 rounded-full"></div>

@@ -18,7 +18,7 @@ const Hero = () => {
     <div className="flex flex-col md:flex-row justify-around items-center px-6 md:px-16 py-12 gap-3">
       {/* Left Section */}
       <div className="text-center space-y-8 md:text-left max-w-3xl">
-      <h1 className={`${inter.className} text-3xl md:text-5xl xl:text-6xl text-gray-600 font-bold leading-tight`}>
+      <h1 className={`${inter.className} text-3xl md:text-5xl xl:text-6xl text-gray-700 font-bold leading-tight`}>
           Build <HighlightedText text="Websites and Apps"/> Without Boundaries
         </h1>
         <p className={`text-lg md:text-xl lg:text-2xl text-gray-900 ${inter.className} font-medium mt-4`}>

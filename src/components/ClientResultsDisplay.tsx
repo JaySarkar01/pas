@@ -155,7 +155,7 @@ const AutoScrollingPartners = ( { partners }: Props) => {
               transition: { type: 'spring', stiffness: 400, damping: 10 },
             }}
           >
-            <img
+            <Image
               src={partner.logo}
               alt={partner.name}
               className="max-h-10 object-contain transition-all duration-300"
