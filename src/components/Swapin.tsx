@@ -72,7 +72,9 @@ export default function TestimonialCarousel() {
                 <div className="w-19 h-19 rounded-lg bg-gray-50 p-2 mt-2 flex items-center justify-center">
                   <Image 
                     src={testimonials[currentIndex].logo} 
-                    alt={testimonials[currentIndex].company} 
+                    alt={testimonials[currentIndex].company}
+                    width={50}
+                    height={50}
                     className="max-h-18 max-w-[4.0rem] object-contain rounded-lg"
                   />
                 </div>

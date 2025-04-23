@@ -4,13 +4,6 @@ import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import TestimonialSlider from "@/components/Swapin";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-  const inter = Inter({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    variable: '--font-inter',
-    display: 'swap',
-  });
 
 const testimonials = [
   {
@@ -102,10 +95,9 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
         <Image
          src={testimonial.logo}
          alt={testimonial.company}
-         width={64} // Equivalent to 4.0rem = 64px
-         height={68} // Adjust height if needed based on aspect ratio
+         width={64} 
+         height={68}
          className="max-h-17 max-w-[4.0rem] object-contain rounded-lg"
-         unoptimized // Optional: if the image is remote or optimization isn't needed
        />
       </div>
     </div>
@@ -158,6 +150,8 @@ const AutoScrollingPartners = ( { partners }: Props) => {
             <Image
               src={partner.logo}
               alt={partner.name}
+              width={150} 
+              height={100}
               className="max-h-10 object-contain transition-all duration-300"
             />
           </motion.div>
@@ -172,7 +166,7 @@ export default function ClientResultsDisplay() {
 
   return (
     <motion.section
-      className={`py-10 px-6 pb-0 mb-0 sm:px-10 bg-white ${inter.className}`}
+      className={`py-10 px-6 pb-0 mb-0 sm:px-10 bg-white`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-100px' }}
